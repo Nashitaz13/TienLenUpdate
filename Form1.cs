@@ -19,7 +19,7 @@ namespace TienLenDoAn
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.CenterToScreen();
         }
 
         private void customButton1_Click(object sender, EventArgs e)
@@ -51,7 +51,8 @@ namespace TienLenDoAn
 
         private void MultiplayButton_Click(object sender, EventArgs e)
         {
-
+            Multiplayer multiplayerForm = new Multiplayer();
+            multiplayerForm.Show();
         }
     }
 }

@@ -29,33 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tmrPlayer = new System.Windows.Forms.Timer(this.components);
             this.tmrCompDelay = new System.Windows.Forms.Timer(this.components);
             this.pbxClock = new System.Windows.Forms.PictureBox();
             this.pbrRemainTime = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
             this.pbxOpponent = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cmdPlay = new TienLenDoAn.CustomButton();
             this.cmdUnChose = new TienLenDoAn.CustomButton();
             this.cmdSkip = new TienLenDoAn.CustomButton();
             this.cmdDeal = new TienLenDoAn.CustomButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOpponent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::TienLenDoAn.Properties.Resources.pngegg;
-            this.pictureBox2.Location = new System.Drawing.Point(50, 163);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(103, 135);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
             // 
             // tmrPlayer
             // 
@@ -72,7 +58,7 @@
             this.pbxClock.BackColor = System.Drawing.Color.Transparent;
             this.pbxClock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbxClock.Image = global::TienLenDoAn.Properties.Resources.Clock_cooldown;
-            this.pbxClock.Location = new System.Drawing.Point(629, 390);
+            this.pbxClock.Location = new System.Drawing.Point(178, 432);
             this.pbxClock.Margin = new System.Windows.Forms.Padding(4);
             this.pbxClock.Name = "pbxClock";
             this.pbxClock.Size = new System.Drawing.Size(52, 53);
@@ -84,7 +70,7 @@
             // 
             // pbrRemainTime
             // 
-            this.pbrRemainTime.Location = new System.Drawing.Point(474, 416);
+            this.pbrRemainTime.Location = new System.Drawing.Point(31, 449);
             this.pbrRemainTime.Margin = new System.Windows.Forms.Padding(4);
             this.pbrRemainTime.Name = "pbrRemainTime";
             this.pbrRemainTime.Size = new System.Drawing.Size(149, 18);
@@ -111,23 +97,13 @@
             // pbxOpponent
             // 
             this.pbxOpponent.Image = global::TienLenDoAn.Properties.Resources.pngegg;
-            this.pbxOpponent.Location = new System.Drawing.Point(498, 12);
+            this.pbxOpponent.Location = new System.Drawing.Point(465, 12);
             this.pbxOpponent.Name = "pbxOpponent";
-            this.pbxOpponent.Size = new System.Drawing.Size(103, 135);
+            this.pbxOpponent.Size = new System.Drawing.Size(144, 193);
             this.pbxOpponent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxOpponent.TabIndex = 21;
             this.pbxOpponent.TabStop = false;
             this.pbxOpponent.Click += new System.EventHandler(this.pictureBox1_Click_1);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::TienLenDoAn.Properties.Resources.pngegg;
-            this.pictureBox3.Location = new System.Drawing.Point(938, 163);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(103, 135);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 22;
-            this.pictureBox3.TabStop = false;
             // 
             // cmdPlay
             // 
@@ -139,7 +115,7 @@
             this.cmdPlay.FlatAppearance.BorderSize = 0;
             this.cmdPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdPlay.ForeColor = System.Drawing.Color.White;
-            this.cmdPlay.Location = new System.Drawing.Point(317, 450);
+            this.cmdPlay.Location = new System.Drawing.Point(31, 575);
             this.cmdPlay.Name = "cmdPlay";
             this.cmdPlay.Size = new System.Drawing.Size(150, 40);
             this.cmdPlay.TabIndex = 19;
@@ -159,7 +135,7 @@
             this.cmdUnChose.FlatAppearance.BorderSize = 0;
             this.cmdUnChose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdUnChose.ForeColor = System.Drawing.Color.White;
-            this.cmdUnChose.Location = new System.Drawing.Point(473, 450);
+            this.cmdUnChose.Location = new System.Drawing.Point(31, 529);
             this.cmdUnChose.Name = "cmdUnChose";
             this.cmdUnChose.Size = new System.Drawing.Size(150, 40);
             this.cmdUnChose.TabIndex = 18;
@@ -179,7 +155,7 @@
             this.cmdSkip.FlatAppearance.BorderSize = 0;
             this.cmdSkip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdSkip.ForeColor = System.Drawing.Color.White;
-            this.cmdSkip.Location = new System.Drawing.Point(629, 450);
+            this.cmdSkip.Location = new System.Drawing.Point(31, 483);
             this.cmdSkip.Name = "cmdSkip";
             this.cmdSkip.Size = new System.Drawing.Size(150, 40);
             this.cmdSkip.TabIndex = 17;
@@ -210,11 +186,10 @@
             // 
             // SinglePlayer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.BackgroundImage = global::TienLenDoAn.Properties.Resources.Background_Ingame1;
             this.ClientSize = new System.Drawing.Size(1074, 661);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pbxOpponent);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cmdPlay);
@@ -223,21 +198,17 @@
             this.Controls.Add(this.cmdDeal);
             this.Controls.Add(this.pbxClock);
             this.Controls.Add(this.pbrRemainTime);
-            this.Controls.Add(this.pictureBox2);
             this.Name = "SinglePlayer";
             this.Text = "SinglePlayer";
             this.Load += new System.EventHandler(this.SinglePlayer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOpponent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Timer tmrPlayer;
         private System.Windows.Forms.Timer tmrCompDelay;
         private System.Windows.Forms.PictureBox pbxClock;
@@ -248,6 +219,5 @@
         private CustomButton cmdPlay;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.PictureBox pbxOpponent;
-        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

@@ -109,14 +109,17 @@
             // tmrRight
             // 
             this.tmrRight.Interval = 1;
+            this.tmrRight.Tick += new System.EventHandler(this.tmrRight_Tick);
             // 
             // tmrLeft
             // 
             this.tmrLeft.Interval = 1;
+            this.tmrLeft.Tick += new System.EventHandler(this.tmrLeft_Tick);
             // 
             // tmrDesOpacity
             // 
             this.tmrDesOpacity.Interval = 5;
+            this.tmrDesOpacity.Tick += new System.EventHandler(this.tmrDesOpacity_Tick_2);
             // 
             // pbxAvatar
             // 
@@ -135,12 +138,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::TienLenDoAn.Properties.Resources.bgrst;
             this.ClientSize = new System.Drawing.Size(272, 237);
+            this.ControlBox = false;
             this.Controls.Add(this.lblLoseNum);
             this.Controls.Add(this.lblWinNum);
             this.Controls.Add(this.lblLosetime);
             this.Controls.Add(this.lblWintimes);
             this.Controls.Add(this.lblPlayerName);
             this.Controls.Add(this.pbxAvatar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Playerinfo";
             this.Text = "Playerinfo";
             this.Load += new System.EventHandler(this.Playerinfo_Load);

@@ -17,12 +17,14 @@ namespace TienLenDoAn
         {
             InitializeComponent();
             this.frmOpen = frm;
+            this.LocationChanged += new EventHandler(Singleplayer_LocationChanged);
+            this.FormClosing += new FormClosingEventHandler(Singleplayer_FormClosing);
         }
 
         private void SinglePlayer_Load(object sender, EventArgs e)
         {
-
-        }
+            this.CenterToScreen();
+        }   
 
         private void card1_Load(object sender, EventArgs e)
         {
@@ -38,13 +40,31 @@ namespace TienLenDoAn
         {
             if (this.isFirstRound)
             {
-                this.frmPlyInfo = new Playerinfo(true);
-                this.frmPlyInfo.Location = new Point(base.Right - this.frmPlyInfo.Width, base.Bottom - this.frmPlyInfo.Height + 5);
-                this.frmPlyInfo.Show();
-                this.frmCompInfo = new Playerinfo(false);
-                this.frmCompInfo.Location = new Point(base.Left, base.Top + 25);
-                this.frmCompInfo.lblPlayerName.Text = "Computer";
-                this.frmCompInfo.Show();
+                // Lấy tọa độ trung tâm của form Singleplayer
+                int centerX = this.Location.X + (this.Width / 2);
+                int centerY = this.Location.Y + (this.Height / 2);
+
+                // Playerinfo của người chơi - nằm ở right center của Singleplayer form
+                if (this.frmPlyInfo == null)
+                {
+                    this.frmPlyInfo = new Playerinfo(true);
+                    this.frmPlyInfo.StartPosition = FormStartPosition.Manual; // Đặt vị trí thủ công
+                                                                              // Đặt ở cạnh bên phải, trung tâm theo chiều dọc
+                    this.frmPlyInfo.Location = new Point(this.Location.X + this.Width * 4 / 5 - 10, centerY - (this.frmPlyInfo.Height / 2));
+                    this.frmPlyInfo.Show();
+                }
+
+                // Playerinfo của máy tính - nằm ở left center của Singleplayer form
+                if (this.frmCompInfo == null)
+                {
+                    this.frmCompInfo = new Playerinfo(false);
+                    this.frmCompInfo.StartPosition = FormStartPosition.Manual; // Đặt vị trí thủ công
+                                                                               // Đặt ở cạnh bên trái, trung tâm theo chiều dọc
+                    this.frmCompInfo.Location = new Point(this.Location.X + 13, centerY - (this.frmCompInfo.Height / 2));
+                    this.frmCompInfo.lblPlayerName.Text = "Computer";
+                    this.frmCompInfo.Show();
+                }
+
                 this.isFirstRound = false;
             }
             this.frmPlyInfo.ReturnAvatar();
@@ -69,6 +89,48 @@ namespace TienLenDoAn
             this.cmdPlay.Visible = true;
             this.cmdSkip.Visible = true;
             this.cmdUnChose.Visible = true;
+        }
+
+        private void Singleplayer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.frmPlyInfo != null)
+            {
+                this.frmPlyInfo.Close();
+            }
+
+            if (this.frmCompInfo != null)
+            {
+                this.frmCompInfo.Close();
+            }
+        }
+
+        private void Singleplayer_LocationChanged(object sender, EventArgs e)
+        {
+            // Lấy tọa độ trung tâm của form Singleplayer
+            int centerX = this.Location.X + (this.Width / 2);
+            int centerY = this.Location.Y + (this.Height / 2);
+
+            // Cập nhật vị trí của frmPlyInfo (Playerinfo người chơi)
+            if (this.frmPlyInfo != null && this.frmPlyInfo.Created)
+            {
+                this.frmPlyInfo.Invoke(new SinglePlayer.Relocate(this.Rec), new object[]
+                {
+                this.frmPlyInfo,
+                this.Location.X + this.Width - 7,   // Cạnh phải form Singleplayer, căn giữa theo chiều dọc
+                centerY - (this.frmPlyInfo.Height / 2)        // Căn giữa theo chiều dọc
+                });
+            }
+
+            // Cập nhật vị trí của frmCompInfo (Playerinfo máy tính)
+            if (this.frmCompInfo != null && this.frmCompInfo.Created)
+            {
+                this.frmCompInfo.Invoke(new SinglePlayer.Relocate(this.Rec), new object[]
+                {
+                this.frmCompInfo,
+                this.Location.X - frmCompInfo.Width + 7,        // Cạnh trái form Singleplayer, căn giữa theo chiều dọc
+                centerY - (this.frmCompInfo.Height / 2)        // Căn giữa theo chiều dọc
+                });
+            }
         }
 
         public void Choseobj_Click(object sender, EventArgs e)
@@ -546,5 +608,41 @@ namespace TienLenDoAn
                 this.remaintime--;
             }
         }
+
+        private void Singlerplayer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Kiểm tra nếu frmPlyInfo đã được tạo ra thì tắt
+            if (this.frmPlyInfo != null && !this.frmPlyInfo.IsDisposed)
+            {
+                this.frmPlyInfo.Close();
+            }
+
+            // Kiểm tra nếu frmCompInfo đã được tạo ra thì tắt
+            if (this.frmCompInfo != null && !this.frmCompInfo.IsDisposed)
+            {
+                this.frmCompInfo.Close();
+            }
+        }
+
+        private void RecX(Form frm, int x)
+        {
+            frm.Location = new Point(x, frm.Location.Y);
+        }
+
+        private void RecY(Form frm, int y)
+        {
+            frm.Location = new Point(frm.Location.X, y);
+        }
+
+        private void Rec(Form frm, int x, int y)
+        {
+            frm.Location = new Point(x, y);
+        }
+
+        public delegate void RelocateX(Form frm, int x);
+
+        public delegate void RelocateY(Form frm, int y);
+
+        public delegate void Relocate(Form frm, int x, int y);
     }
 }

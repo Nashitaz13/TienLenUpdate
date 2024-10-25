@@ -60,6 +60,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Multiplayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Multiplayer.Designer.cs">
+      <DependentUpon>Multiplayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Option.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Multiplayer.resx">
+      <DependentUpon>Multiplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Option.resx">
       <DependentUpon>Option.cs</DependentUpon>
@@ -285,6 +294,9 @@
     <Content Include="Emo\Winner\7.jpg" />
     <Content Include="Emo\Winner\8.jpg" />
     <Content Include="Emo\Winner\9.jpg" />
+    <None Include="Source Image\202.jpg" />
+    <None Include="Source Image\20.jpg" />
+    <None Include="Resources\20.jpg" />
     <None Include="Resources\SingleplayTable.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

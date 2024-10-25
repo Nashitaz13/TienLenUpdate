@@ -308,36 +308,89 @@ namespace TienLenDoAn
         #endregion
 
         #region [   -   AI   -   ]
-        
+
         //Methods for Player if Player is Computer
         public void FindValidCardtoPlay(List<Card> PreMoveCards)
         {
-            if (PreMoveCards.Count() == 1)
-                for (int i = 0; i < PlayerCard.Count(); i++)
+            Random rnd = new Random();
+
+            // Nếu không có bài trước (nghĩa là lượt đầu tiên)
+            if (PreMoveCards.Count() == 0)
+            {
+                // Random chọn kiểu bài để đánh
+                int option = rnd.Next(0, 4); // 0: Đánh lẻ, 1: Đánh đôi, 2: Đánh sảnh, 3: Đánh bộ đặc biệt
+
+                switch (option)
                 {
-                    ChoseCard.Add(PlayerCard[i]);
-                    if (!DoCheck(PreMoveCards))
-                        ChoseCard.Clear();
-                    else 
-                        return;
-                        
+                    case 0: // Đánh lẻ
+                        for (int i = 0; i < PlayerCard.Count(); i++)
+                        {
+                            ChoseCard.Add(PlayerCard[i]);
+                            return; // Chọn ngẫu nhiên 1 lá bài
+                        }
+                        break;
+
+                    case 1: // Đánh đôi
+                        for (int i = 0; i < PlayerCard.Count() - 1; i++)
+                        {
+                            if (CheckCouple(PlayerCard[i], PlayerCard[i + 1]))
+                            {
+                                ChoseCard.Add(PlayerCard[i]);
+                                ChoseCard.Add(PlayerCard[i + 1]);
+                                return;
+                            }
+                        }
+                        break;
+
+                    case 2: // Đánh sảnh
+                        for (int i = 0; i < PlayerCard.Count() - 2; i++) // Phải có ít nhất 3 lá bài liên tiếp
+                        {
+                            if (CheckListContinuous(new List<Card> { PlayerCard[i], PlayerCard[i + 1], PlayerCard[i + 2] }))
+                            {
+                                ChoseCard.Add(PlayerCard[i]);
+                                ChoseCard.Add(PlayerCard[i + 1]);
+                                ChoseCard.Add(PlayerCard[i + 2]);
+                                return;
+                            }
+                        }
+                        break;
+
+                    case 3: // Đánh bộ đặc biệt (bộ tứ)
+                        for (int i = 0; i < PlayerCard.Count() - 3; i++)
+                        {
+                            if (CheckSameFour(PlayerCard[i], PlayerCard[i + 1], PlayerCard[i + 2], PlayerCard[i + 3]))
+                            {
+                                ChoseCard.Add(PlayerCard[i]);
+                                ChoseCard.Add(PlayerCard[i + 1]);
+                                ChoseCard.Add(PlayerCard[i + 2]);
+                                ChoseCard.Add(PlayerCard[i + 3]);
+                                return;
+                            }
+                        }
+                        break;
                 }
-            else
+            }
+            else // Nếu có bài của đối thủ, kiểm tra bài hợp lệ và chọn ngẫu nhiên
             {
                 for (int i = 0; i < PlayerCard.Count() - PreMoveCards.Count(); i++)
-                {   int k = i;
-                    for (int j = 1; j <= PreMoveCards.Count(); j++)
-                    {   
+                {
+                    ChoseCard.Clear();
+                    int k = i;
+                    for (int j = 0; j < PreMoveCards.Count(); j++)
+                    {
                         ChoseCard.Add(PlayerCard[k]);
                         k++;
                     }
 
-                    if (!DoCheck(PreMoveCards))
-                        ChoseCard.Clear();
-                    else
+                    if (DoCheck(PreMoveCards)) // Kiểm tra nếu bài hợp lệ
+                    {
                         return;
+                    }
                 }
             }
+
+            // Nếu không tìm được bài hợp lệ
+            ChoseCard.Clear();
         }
 
         //UNDERCONSTRUCTION

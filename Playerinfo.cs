@@ -91,50 +91,8 @@ namespace TienLenDoAn
             }
         }
 
-        private void tmrRight_Tick(object sender, EventArgs e)
-        {
-            if (base.Location.X + 5 < this.x + base.Width)
-            {
-                base.Location = new Point(base.Location.X + 5, base.Location.Y);
-                base.Opacity += 0.02;
-            }
-            else
-            {
-                this.tmrRight.Stop();
-                base.Location = new Point(this.x + base.Width + 5, base.Location.Y);
-                base.Opacity = 1.0;
-            }
-        }
 
-        // Token: 0x0600005F RID: 95 RVA: 0x00005750 File Offset: 0x00003950
-        private void tmrLeft_Tick(object sender, EventArgs e)
-        {
-            if (base.Location.X - 5 > this.x - base.Width)
-            {
-                base.Location = new Point(base.Location.X - 5, base.Location.Y);
-                base.Opacity += 0.02;
-            }
-            else
-            {
-                this.tmrLeft.Stop();
-                base.Location = new Point(this.x - base.Width - 5, base.Location.Y);
-                base.Opacity = 1.0;
-            }
-        }
 
-        // Token: 0x06000060 RID: 96 RVA: 0x00005810 File Offset: 0x00003A10
-        private void tmrOpacity_Tick(object sender, EventArgs e)
-        {
-            if (base.Opacity > 0.0)
-            {
-                base.Opacity -= 0.05;
-            }
-            else
-            {
-                base.Close();
-                this.tmrDesOpacity.Stop();
-            }
-        }
 
         private void lblPlayerName_Click(object sender, EventArgs e)
         {
@@ -194,6 +152,55 @@ namespace TienLenDoAn
         private void pbxAvatar_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void lblPlayerName_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tmrRight_Tick(object sender, EventArgs e)
+        {
+            if (base.Location.X + 5 < this.x + base.Width)
+            {
+                base.Location = new Point(base.Location.X + 5, base.Location.Y);
+                base.Opacity += 0.02;
+            }
+            else
+            {
+                this.tmrRight.Stop();
+                base.Location = new Point(this.x + base.Width + 5, base.Location.Y);
+                base.Opacity = 1.0;
+            }
+        }
+
+        private void tmrLeft_Tick(object sender, EventArgs e)
+        {
+            if (base.Location.X - 5 > this.x - base.Width)
+            {
+                base.Location = new Point(base.Location.X - 5, base.Location.Y);
+                base.Opacity += 0.02;
+            }
+            else
+            {
+                this.tmrLeft.Stop();
+                base.Location = new Point(this.x - base.Width - 5, base.Location.Y);
+                base.Opacity = 1.0;
+            }
+        }
+
+        private void tmrDesOpacity_Tick_2(object sender, EventArgs e)
+        {
+            if (base.Opacity > 0.0)
+            {
+                base.Opacity -= 0.05;
+            }
+            else
+            {
+                base.Close();
+                this.tmrDesOpacity.Stop();
+            }
         }
     }
 }
